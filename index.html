@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Property Card with TailwindCSS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<!-- min-h-screen : สูงเต็มจอ
+     flex items-center justify-center : จัดการ์ดไว้กึ่งกลางทั้งแนวตั้งและแนวนอน
+     bg-gray-100 : พื้นหลังเทาอ่อน -->
+<body class="min-h-screen flex items-center justify-center bg-gray-100 text-gray-600">
+
+  <!-- ===================== CARD ===================== -->
+  <!-- w-80 : กว้าง 20rem (320px)
+       bg-white : พื้นขาว
+       rounded-2xl : มุมโค้งมาก
+       shadow-lg : เงาขนาดใหญ่ ทำให้การ์ดลอยขึ้น
+       overflow-hidden : ตัดส่วนที่ล้นออกนอกมุมโค้ง (รูปและแถบสีจะโค้งตามการ์ด)
+       border-b-8 border-pink-700 : เส้นขอบล่างหนา 8px สีชมพูเข้ม (แถบด้านล่างการ์ด) -->
+  <article class="w-80 bg-white rounded-2xl shadow-lg overflow-hidden border-b-8 border-pink-700">
+
+    <!-- ---------- ส่วนรูปภาพ ---------- -->
+    <!-- relative : ให้ป้าย "For Rental" ใช้ absolute อ้างอิงตำแหน่งจาก div นี้ -->
+    <div class="relative">
+      <!-- w-full : กว้างเต็มการ์ด
+           h-60 : สูง 15rem
+           object-cover : ครอบรูปให้เต็มกรอบโดยไม่บิดสัดส่วน -->
+      <img class="w-full h-60 object-cover"
+           src="https://picsum.photos/id/164/640/480"
+           alt="Bedroom with a city view" />
+
+      <!-- ป้าย For Rental
+           absolute top-0 right-0 : ติดมุมขวาบนของรูป
+           flex items-center gap-2 : เรียงไอคอนกับข้อความ
+           bg-pink-400 : พื้นชมพู
+           text-white : ตัวอักษรขาว
+           px-4 py-2 : padding แนวนอน 1rem / แนวตั้ง 0.5rem
+           text-sm font-medium : ตัวเล็ก น้ำหนักปานกลาง -->
+      <span class="absolute top-0 right-0 flex items-center gap-2 bg-pink-400 text-white px-4 py-2 text-sm font-medium">
+        <!-- ไอคอนเหรียญ : h-5 w-5 = 1.25rem -->
+        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="9" />
+          <path stroke-linecap="round" d="M12 7v10M9.5 10c0-1 1-1.5 2.5-1.5s2.5.5 2.5 1.5-1 1.5-2.5 1.5-2.5.5-2.5 1.5 1 1.5 2.5 1.5 2.5-.5 2.5-1.5" />
+        </svg>
+        For Rental
+      </span>
+    </div>
+
+    <!-- ---------- เนื้อหา ---------- -->
+    <!-- p-4 : padding รอบด้าน 1rem
+         space-y-3 : เว้นระยะแนวตั้งระหว่างลูกแต่ละตัว 0.75rem -->
+    <div class="p-4 space-y-3">
+
+      <!-- แถวราคา + ประเภท
+           flex justify-between items-center : ราคาชิดซ้าย ประเภทชิดขวา -->
+      <div class="flex justify-between items-center">
+        <!-- ราคา : gap-2 เว้นช่องไอคอนกับตัวเลข -->
+        <div class="flex items-center gap-2">
+          <svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="9" />
+            <path stroke-linecap="round" d="M12 7v10M9.5 10c0-1 1-1.5 2.5-1.5s2.5.5 2.5 1.5-1 1.5-2.5 1.5-2.5.5-2.5 1.5 1 1.5 2.5 1.5 2.5-.5 2.5-1.5" />
+          </svg>
+          <!-- text-3xl : ตัวอักษรใหญ่ / font-light : ตัวบาง / text-gray-700 : เทาเข้มกว่าปกติ -->
+          <span class="text-3xl font-light text-gray-700">3,000</span>
+        </div>
+
+        <!-- ประเภทที่พัก : text-sm ตัวเล็ก -->
+        <div class="flex items-center gap-1 text-sm">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M4 20V6h8v14M12 10h8v10M4 20h16M7 9h2M7 13h2M15 13h2M15 16h2" />
+          </svg>
+          Apartment
+        </div>
+      </div>
+
+      <!-- ที่อยู่
+           leading-relaxed : ระยะห่างระหว่างบรรทัดกว้างขึ้น อ่านง่าย
+           text-gray-700 : สีเทาเข้ม -->
+      <p class="leading-relaxed text-gray-700">
+        86872 Jacob Gateway,<br />
+        Durganport, WV 48044
+      </p>
+
+      <!-- แถวรายละเอียด : ห้องนอน / ห้องน้ำ / พื้นที่ / สัตว์เลี้ยง
+           pt-4 : ระยะห่างด้านบน
+           gap-4 : ช่องว่างระหว่างแต่ละไอเท็ม 1rem
+           text-sm : ตัวอักษรเล็ก -->
+      <ul class="flex items-center gap-4 pt-4 text-sm">
+        <li class="flex items-center gap-1">
+          <!-- ไอคอนเตียง -->
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M3 19V6M3 14h18v5M21 14v-2a3 3 0 0 0-3-3h-7v5" />
+          </svg>
+          4
+        </li>
+        <li class="flex items-center gap-1">
+          <!-- ไอคอนอ่างอาบน้ำ -->
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M3 12h18v2a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5v-2zM6 12V6a2 2 0 0 1 4 0M7 19l-1 2M17 19l1 2" />
+          </svg>
+          2
+        </li>
+        <li class="flex items-center gap-1">
+          <!-- ไอคอนขยายพื้นที่ -->
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M4 14v6h6M20 10V4h-6M4 20l6-6M20 4l-6 6" />
+          </svg>
+          180 m2
+        </li>
+        <!-- ml-auto : ดันไอเท็มนี้ไปชิดขวาสุด (ใช้ margin-left อัตโนมัติ) -->
+        <li class="ml-auto text-gray-700" title="Pet friendly">
+          <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+            <circle cx="6" cy="10" r="2" /><circle cx="10" cy="6" r="2" />
+            <circle cx="14" cy="6" r="2" /><circle cx="18" cy="10" r="2" />
+            <path d="M12 11c-3 0-5 3-5 5.5 0 1.5 1 2.5 2.500 2.500 1 0 1.500-.5 2.500-.5s1.500.5 2.500.5c1.500 0 2.500-1 2.500-2.500C17 14 15 11 12 11z" />
+          </svg>
+        </li>
+      </ul>
+    </div>
+  </article>
+</body>
+</html>
